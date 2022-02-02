@@ -18,8 +18,8 @@ export default function OptionCloud({color}:any){
     <form className='img-container' onSubmit={onSubmit}>
       <img src={imgPath[color]}/>
       {newOption==='' 
-        ? <input className='text-before-input' type='text' onChange={onChange} placeholder='선택지를 입력해주세요' value={newOption}/>
-        : <input className='text-after-input' type='text' onChange={onChange} placeholder='선택지를 입력해주세요' value={newOption}/>
+        ? <textarea className='text-before-input' maxLength={30} onChange={onChange} placeholder='선택지를 입력해주세요' value={newOption}/>
+        : <textarea className='text-after-input' maxLength={30} onChange={onChange} placeholder='선택지를 입력해주세요' value={newOption}/>
       }
     </form>
   )
