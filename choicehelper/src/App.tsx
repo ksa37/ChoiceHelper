@@ -10,7 +10,7 @@ function App() {
     <>
       <Header/>
       <OptionList/>
-      <Button/>
+      <Button buttonOption={0}/>
     </>
   );
 }
