@@ -74,6 +74,7 @@ header {
   text-align: center;
   background-color: transparent;
   font-size: 18px;
+  font-weight: bold;
 }
 
 input {
@@ -85,4 +86,8 @@ input {
 
 input:focus {
   outline: none;
+}
+
+input:focus::placeholder {
+  color: transparent;
 }
