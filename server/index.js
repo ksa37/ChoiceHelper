@@ -3,13 +3,16 @@ import bodyParser from 'body-parser';
 import mongoose from 'mongoose';
 import cors from 'cors';
 
+import postRoutes from './routes/posts.js'
 
-// const express = require('express');
 const app = express();
 
 app.use(bodyParser.json({ limit: "30mb", extended: true }));
 app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
 app.use(cors())
+
+// every route inside of the postRoutes starts with '/posts'
+app.use('/posts', postRoutes);
 
 // Due to security issue, move this variable to .env later
 const CONNECTION_URL = 'mongodb+srv://choicehelper:choicehelper123@cluster0.cb2bq.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
