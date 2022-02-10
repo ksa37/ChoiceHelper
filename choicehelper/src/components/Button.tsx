@@ -3,7 +3,7 @@ import '../App.css';
 
 
 export default function Button({buttonOption}:any){
-  const optionText = ["골라줘!", "다른 것도 골라줘!"]
+  const optionText = ["골라줘!", "공유하기"]
   const [btnOpt, setBtnOpt] = useState(buttonOption);
   const onClick = ()=>{
 
