@@ -1,0 +1,99 @@
+header {
+  position: absolute;
+  top: 27px;
+  /* display: inline-block; */
+}
+.header-icon {
+  position: relative;
+  float: left;
+}
+
+.header-icon-group {
+  position: absolute;
+  right: 20px;
+  top: 27px;
+  /* position: absolute;
+  width: 60px;
+  height: 21px;
+  left: 291px;
+  top: 71px; */
+}
+
+.pick-button {
+  background-color: #6667ab;
+  /* border: solid 1px #6667ab; */
+  width: 327px;
+  height: 60px;
+  color: white;
+  border-radius: 12px;
+  padding: 5px;
+  border: none;
+  font-size: 20px;
+  /* padding: 0;
+  font: inherit;
+  cursor: pointer;
+  outline: inherit; */
+}
+
+.shake-text {
+  text-decoration: underline;
+  color: #757575;
+  font-size: 14px;
+}
+
+.button-area {
+  justify-content: center;
+  text-align: center;
+  position: fixed;
+  bottom: 45px;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+}
+
+.img-container {
+  position: relative;
+  text-align: center;
+}
+.text-before-input {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #757575;
+  text-decoration: underline;
+  text-align: center;
+  background-color: transparent;
+}
+
+.text-after-input {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  background-color: transparent;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+textarea {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border: 0;
+  width: 180px;
+  resize: none;
+}
+
+textarea:focus {
+  outline: none;
+}
+
+textarea:focus::placeholder {
+  color: transparent;
+}
+
+.picked-view {
+  background-color: black;
+}
