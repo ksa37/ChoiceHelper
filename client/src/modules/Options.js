@@ -21,13 +21,6 @@ export default function options(state = initialState, action) {
   switch (action.type) {
     case ADD_OPTION:
       return state.concat(action.option);
-    case DELETE_TODO:
-      return state.map(
-        todo =>
-          todo.id === action.id // id 가 일치하면
-            ? { ...todo, done: !todo.done } // done 값을 반전시키고
-            : todo // 아니라면 그대로 둠
-      );
     default:
       return state;
   }
