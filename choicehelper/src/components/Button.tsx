@@ -1,6 +1,5 @@
-import axios from 'axios';
 import React, { useState } from 'react';
-import { createPost } from '../api';
+import { createPost, fetchPosts } from '../api';
 import '../App.css';
 
 
@@ -14,59 +13,43 @@ export default function Button({buttonOption}:any){
     switch(btnOpt){
       case(0):{
         setBtnOpt(1);
+        // 골라줘! -> 공유하기
+        // random pick 후 db에 올리기
+
+        const options: string[] = ["hi"];
+        const selected_option: string = 'hello';
+        const repeat: number = 0;
+        // const createdAt: Object = {};
+
+        try {
+          const { data } = await createPost({
+            "options": options,
+            "repeat": repeat,
+            "selected_option": selected_option,
+            // "selected_option": picked,
+            // "createdAt": createdAt
+          })
+        } catch(error) {
+          if (error instanceof Error){
+            console.log(error.message);
+          }
+        }
+
         break;
       }case(1):{
         setBtnOpt(0);
+        try {
+          const { data } = await fetchPosts()
+          console.log("hello")
+          console.log(data)
+        } catch(error) {
+          if (error instanceof Error){
+            console.log(error.message);
+          }
+        }
         break;
       }
     }
-
-    const options: string[] = ["hi"];
-    const selected_option: string = 'hello';
-    const repeat: number = 0;
-    const createdAt: Object = {};
-
-    // axios.post('http://localhost:4000/posts', {
-    //   "options": options,
-    //   "repeat": repeat,
-    //   "selected_option": selected_option
-    //   // "selected_option": selected_option,
-    //   // "createdAt": createdAt
-    // }).then(function (res) {
-    //   console.log(res);
-    // }).catch(function (err){
-    //   console.log(err);
-    // })
-
-    try {
-      const { data } = await createPost({
-        "options": options,
-        "repeat": repeat,
-        "selected_option": selected_option,
-        // "createdAt": createdAt
-      })
-    } catch(error) {
-      if (error instanceof Error){
-        console.log(error.message);
-      }
-    }
-
-    // axios.get('http://localhost:4000/posts')
-    //     .then((response) => {console.log(response)})
-    //     .catch((error) => {
-    //       if (error instanceof Error){
-    //         console.log(error.message);
-    //         }
-    //     })
-    
-    // axios({
-    //   method: 'get',
-    //   url: 'http://localhost:4000/posts',
-    //   responseType: 'stream'
-    // })
-    //   .then(function (response) {
-    //     console.log(response)
-    //   });
   }
 
   function randomPick(optionNumber: number){

@@ -14,7 +14,6 @@ export const getPosts = async (req, res) => {
         res.status(404).json({ message: error.message });
         console.log(error.message);
     }
-    // res.send("GET works!"); 
 }
 
 export const createPosts = async (req, res) => {
@@ -27,13 +26,12 @@ export const createPosts = async (req, res) => {
         // learn more about status codes 
         // at: https://www.restapitutorial.com/httpstatuscodes.html
         // 201: created
-        // res.status(201).json(postSelections);
         res.status(201).json(newPost);
-        console.log("POST works!"); 
+        console.log("POST DONE! \nAdded data:"); 
+        console.log(newPost);
     } catch (error) {
         // 409: Conflict
         res.status(409).json({ message: error.message });
         console.log(error.message);
     }
-    // res.send("POST works!");
 }
