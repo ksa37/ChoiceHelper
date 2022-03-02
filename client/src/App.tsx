@@ -7,7 +7,7 @@ import OptionList from './components/OptionList';
 import PickedView from './components/PickedView';
 
 function App() {
-  const pickingProcess = false;
+  const pickingProcess = true;
   return (
     <>
       {pickingProcess
