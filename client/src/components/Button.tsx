@@ -1,13 +1,11 @@
 import React, { useState } from 'react';
-// import { countPosts, createPost, fetchPosts } from '../api';
 import { createPost, fetchPosts } from '../api';
 import '../App.css';
 
 
 export default function Button({buttonOption}:any){
-  const optionText = ["골라줘!", "다른 것도 골라줘!"]
+  const optionText = ["골라줘!", "공유하기"]
   const [btnOpt, setBtnOpt] = useState(buttonOption);
-  
   const onClick = async () => {
 
     // const picked = randomPick(options);

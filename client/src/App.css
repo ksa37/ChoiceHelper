@@ -93,3 +93,7 @@ textarea:focus {
 textarea:focus::placeholder {
   color: transparent;
 }
+
+.picked-view {
+  background-color: black;
+}

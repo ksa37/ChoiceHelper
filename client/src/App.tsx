@@ -4,13 +4,22 @@ import Button from './components/Button';
 import Header from './components/Header';
 import OptionCloud from './components/OptionCloud';
 import OptionList from './components/OptionList';
+import PickedView from './components/PickedView';
 
 function App() {
+  const pickingProcess = false;
   return (
     <>
-      <Header/>
-      <OptionList/>
-      <Button buttonOption={0}/>
+      {pickingProcess
+      ?
+      <>
+        <Header/>
+        <OptionList/>
+        <Button buttonOption={0}/>
+      </>
+      : <PickedView/>
+      }
+      
     </>
   );
 }
