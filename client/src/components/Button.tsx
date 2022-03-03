@@ -14,7 +14,6 @@ export default function Button({buttonOption}:any){
     switch(btnOpt){
       case(0):{
         setBtnOpt(1);
-
         break;
       }case(1):{
         setBtnOpt(0);

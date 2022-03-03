@@ -20,7 +20,6 @@ const initialState: any = {
 export default function options(state = initialState, action: any) {
   switch (action.type) {
     case ADD_OPTION:
-      console.log("why")
       return {
         ...state,
         clouds: state.clouds.concat(action.option)
