@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { countPosts, createPost, fetchPosts } from '../api';
+// import { countPosts, createPost, fetchPosts } from '../api';
+import { createPost, fetchPosts } from '../api';
 import '../App.css';
 
 
@@ -39,13 +40,13 @@ export default function Button({buttonOption}:any){
       }case(1):{
         setBtnOpt(0);
         try {
-          // data fetch
+          // data fetch test
           const { data } = await fetchPosts()
-          const cnt = await countPosts()
-          console.log("Data fetch and count test");
+          // const cnt = await countPosts()
+          console.log("Data fetch and count test:");
           console.log(data);
-          console.log(data.length);
-          console.log(cnt.data);
+          console.log("The number of running our service:",data.length);
+          // console.log(cnt.data);
         } catch(error) {
           if (error instanceof Error){
             console.log(error.message);

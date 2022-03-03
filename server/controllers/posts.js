@@ -36,23 +36,23 @@ export const createPosts = async (req, res) => {
     }
 }
 
-export const countPosts = async (req, res) => {
-    try {
-        // const postSelections = await PostSelection.find();
-        var query = PostSelection.find();
-        query.count(function (err, count) {
-            if (err) console.log(err)
-            else {
-                console.log("Count:", count);
-                res.status(200).json(count);
-            }
-        });
+// export const countPosts = async (req, res) => {
+//     try {
+//         // const postSelections = await PostSelection.find();
+//         var query = PostSelection.find();
+//         query.count(function (err, count) {
+//             if (err) console.log(err)
+//             else {
+//                 console.log("Count:", count);
+//                 res.status(200).json(count);
+//             }
+//         });
         
 
-        // console.log(postSelections.count());
-    } catch (error) {
-        // 409: Conflict
-        res.status(409).json({ message: error.message });
-        console.log(error.message);
-    }
-}
+//         // console.log(postSelections.count());
+//     } catch (error) {
+//         // 409: Conflict
+//         res.status(409).json({ message: error.message });
+//         console.log(error.message);
+//     }
+// }
