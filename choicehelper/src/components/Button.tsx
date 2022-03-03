@@ -26,6 +26,7 @@ export default function Button({buttonOption}:any){
           console.log(data);
           console.log("The number of running our service:");
           console.log(data.length + 1);
+          console.log("=======================================")
           // console.log(cnt.data);
         } catch(error) {
           if (error instanceof Error){
@@ -48,6 +49,9 @@ export default function Button({buttonOption}:any){
             // "selected_option": picked,
             "createdAt": createdAt
           })
+          console.log("Data Post Done:");
+          console.log(data);
+          console.log("=======================================")
         } catch(error) {
           if (error instanceof Error){
             console.log(error.message);

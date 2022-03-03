@@ -2,13 +2,12 @@ import PostSelection from "../models/postSelection.js";
 
 export const getPosts = async (req, res) => {
     try {
-        const postSelections = await PostSelection.find();
+        const postSelections = await PostSelection.find().sort( { "createdAt": -1 } ).exec();
         
-        // console.log(postSelections.sort( { "_id": 1 } ));
-
         // 200: OK
         res.status(200).json(postSelections);
-        console.log("GET works!"); 
+        console.log("GET DONE! \nSorted data:"); 
+        console.log(postSelections);
     } catch (error) {
         // 404: Not Found
         res.status(404).json({ message: error.message });
