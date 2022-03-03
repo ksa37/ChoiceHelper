@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { createPost, fetchPosts } from '../api';
+import { countPosts, createPost, fetchPosts } from '../api';
 import '../App.css';
 
 
@@ -19,7 +19,7 @@ export default function Button({buttonOption}:any){
         const options: string[] = ["hi"];
         const selected_option: string = 'hello';
         const repeat: number = 0;
-        // const createdAt: Object = {};
+        const createdAt = new Date();
 
         try {
           const { data } = await createPost({
@@ -27,7 +27,7 @@ export default function Button({buttonOption}:any){
             "repeat": repeat,
             "selected_option": selected_option,
             // "selected_option": picked,
-            // "createdAt": createdAt
+            "createdAt": createdAt
           })
         } catch(error) {
           if (error instanceof Error){
@@ -39,9 +39,13 @@ export default function Button({buttonOption}:any){
       }case(1):{
         setBtnOpt(0);
         try {
+          // data fetch
           const { data } = await fetchPosts()
-          console.log("hello")
-          console.log(data)
+          const cnt = await countPosts()
+          console.log("Data fetch and count test");
+          console.log(data);
+          console.log(data.length);
+          console.log(cnt.data);
         } catch(error) {
           if (error instanceof Error){
             console.log(error.message);

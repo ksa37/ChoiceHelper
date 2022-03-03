@@ -5,18 +5,14 @@ const selectionSchema = mongoose.Schema({
     // timestamp: String,  // 최근 고민을 위해 저장
     repeat: Number,  // 같은 옵션을 몇 번 수행했는지 기록하기 위해 저장 (핫한 고민)
     selected_option: String, // (랜덤하게) 선택된 옵션, 공유 기능을 위해 저장
-    // createdAt: {
-    //     type: Date,
-    //     default: new Date()
-    // }
+    createdAt: {
+        type: Date,
+        default: Date.now
+    }
 });
 
 // const keywordsSchema = mongoose.Schema({
 //     // 
-// });
-
-// const totalSchema = mongoose.Schema({
-//     total: Numver
 // });
 
 const PostSelection = mongoose.model('PostSelection', selectionSchema);
