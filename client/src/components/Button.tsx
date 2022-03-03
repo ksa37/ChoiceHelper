@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import '../App.css';
 
 
 export default function Button({buttonOption}:any){
   const optionText = ["골라줘!", "공유하기"]
   const [btnOpt, setBtnOpt] = useState(buttonOption);
+  const linkUrls = ["/picked", "/"]; 
   const onClick = ()=>{
 
     // const picked = randomPick(options);
@@ -12,6 +14,7 @@ export default function Button({buttonOption}:any){
     switch(btnOpt){
       case(0):{
         setBtnOpt(1);
+
         break;
       }case(1):{
         setBtnOpt(0);
@@ -27,6 +30,6 @@ export default function Button({buttonOption}:any){
   return(
   <div className='button-area'>
     {btnOpt===0&&<p className='shake-text'>버튼을 누르는 대신 흔들어줘!</p>}
-    <button className='pick-button' onClick={onClick}>{optionText[btnOpt]}</button>
+    <Link to={linkUrls[btnOpt]}><button className='pick-button' onClick={onClick}>{optionText[btnOpt]}</button></Link>
   </div>
 )}

@@ -14,6 +14,7 @@ export default function OptionList(){
     for(let i=0; i<3; i++){
       content.push(<OptionCloud color={defaultColor[i]} key={i} />);
       dispatch(addOption(defaultColor[i],""));
+      console.log("Why twice...");
     }
     return content;
   };
