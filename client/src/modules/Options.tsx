@@ -15,6 +15,7 @@ export const addOption = (color: number, text:string) => ({
 /* Initial state */
 const initialState: any = {
   clouds: [],
+  color: 0
 };
 
 export default function options(state = initialState, action: any) {
@@ -22,7 +23,8 @@ export default function options(state = initialState, action: any) {
     case ADD_OPTION:
       return {
         ...state,
-        clouds: state.clouds.concat(action.option)
+        clouds: state.clouds.concat(action.option),
+        color: action.option.color
       };
     default:
       return state;

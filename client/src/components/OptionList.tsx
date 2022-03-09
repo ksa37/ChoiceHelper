@@ -1,22 +1,36 @@
 import React, { useState } from 'react';
 import OptionCloud from './OptionCloud';
 import '../App.css';
-import { useSelector, useDispatch } from 'react-redux';
+import { RootStateOrAny, useSelector, useDispatch } from 'react-redux'; 
 import { addOption } from '../modules/Options';
 
 export default function OptionList(){
-  // const [currentColor, setCurrentColor] = useState(3);
+
+  const [initialized, setInitialized] = useState(0);
+  const dispatch = useDispatch(); 
+
+  const { clouds, color } = useSelector((state: RootStateOrAny) => ({
+    clouds: state.options.clouds,
+    color: state.options.color
+  }));
+
+
+  if(initialized===0){
+    for(let i=0; i<2; i++){
+      dispatch(addOption(i%3, ""));      
+    }
+    setInitialized(1);
+  }
   
-  const dispatch = useDispatch();
-  const defaultColor = [0, 1, 2];
   const getOptionClouds = () =>{
     let content:any = [];
-    for(let i=0; i<3; i++){
-      content.push(<OptionCloud color={defaultColor[i]} key={i} />);
-      dispatch(addOption(defaultColor[i],""));
-    }
+
+    clouds.map((cloud:any)=>{
+      content.push(<OptionCloud color={cloud.color} key={cloud.id} />);
+    })
     return content;
   };
+
   return(
     <>
       {getOptionClouds()}
