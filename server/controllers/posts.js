@@ -2,17 +2,17 @@ import PostSelection from "../models/postSelection.js";
 
 export const getPosts = async (req, res) => {
     try {
-        const postSelections = await PostSelection.find();
+        const postSelections = await PostSelection.find().sort( { "createdAt": -1 } ).exec();
         
-        console.log(postSelections);
-
         // 200: OK
         res.status(200).json(postSelections);
+        console.log("GET DONE! \nSorted data:"); 
+        console.log(postSelections);
     } catch (error) {
         // 404: Not Found
         res.status(404).json({ message: error.message });
+        console.log(error.message);
     }
-    res.send("GET works!");
 }
 
 export const createPosts = async (req, res) => {
@@ -25,10 +25,33 @@ export const createPosts = async (req, res) => {
         // learn more about status codes 
         // at: https://www.restapitutorial.com/httpstatuscodes.html
         // 201: created
-        res.status(201).json(postSelections);
+        res.status(201).json(newPost);
+        console.log("POST DONE! \nAdded data:"); 
+        console.log(newPost);
     } catch (error) {
         // 409: Conflict
         res.status(409).json({ message: error.message });
+        console.log(error.message);
     }
-    res.send("GET works!");
 }
+
+// export const countPosts = async (req, res) => {
+//     try {
+//         // const postSelections = await PostSelection.find();
+//         var query = PostSelection.find();
+//         query.count(function (err, count) {
+//             if (err) console.log(err)
+//             else {
+//                 console.log("Count:", count);
+//                 res.status(200).json(count);
+//             }
+//         });
+        
+
+//         // console.log(postSelections.count());
+//     } catch (error) {
+//         // 409: Conflict
+//         res.status(409).json({ message: error.message });
+//         console.log(error.message);
+//     }
+// }
