@@ -2,7 +2,6 @@ import React from 'react';
 import Button from './Button';
 import '../App.css';
 import OptionCloud from './OptionCloud';
-import PickedOption from './PickedOption';
 import PickedOptionList from './PickedOptionList';
 
 export default function PickedView(){
