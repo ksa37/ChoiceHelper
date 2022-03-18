@@ -1,5 +1,8 @@
+import { idText } from 'typescript';
+
 /* Action Types */
 const ADD_OPTION = 'options/ADD_OPTION';
+const SET_PICKED = 'options/SET_PICKED';
 
 /* Action create functions */
 let nextId = 0;
@@ -12,10 +15,20 @@ export const addOption = (color: number, text:string) => ({
   }
 });
 
+export const setPicked = (id:number, color:number, text:string) => ({
+  type: SET_PICKED,
+  pickedItem: {
+    id: id,
+    color: color,
+    text: text
+  }
+
+})
 /* Initial state */
 const initialState: any = {
   clouds: [],
-  color: 0
+  color: 0,
+  pickedOption: {}
 };
 
 export default function options(state = initialState, action: any) {
@@ -25,6 +38,11 @@ export default function options(state = initialState, action: any) {
         ...state,
         clouds: state.clouds.concat(action.option),
         color: action.option.color
+      };
+    case SET_PICKED:
+      return {
+        ...state,
+        pickedOption: action.pickedItem
       };
     default:
       return state;

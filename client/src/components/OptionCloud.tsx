@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import '../App.css';
 
-const imgPath = ["/clouds/1.png", "/clouds/2.png", "/clouds/3.png"]
+const imgPath = ["/clouds/1.png", "/clouds/2.png", "/clouds/3.png"];
 
 export default function OptionCloud({color}:any){
   const [newOption, setOption] = useState('');

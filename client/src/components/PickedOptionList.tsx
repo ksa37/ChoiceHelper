@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 function PickedOption(props:any){
   const colors = ["#FFCCCC", "#FFE7AB"];
@@ -10,11 +10,21 @@ function PickedOption(props:any){
   )
 };
 
-export default function PickedOptionList(){
+export default function PickedOptionList(props:any){
+  //props.text
+  console.log(props);
+  // console.log(props.id);
+  // console.log('hi');
+  // console.log(props.textList);
+  // console.log(text);
+  const [currentColor, setColor] = useState(0);
   return(
     <div>
-      <PickedOption text='껌' colorIndex={0} />
-      <PickedOption text='사탕' colorIndex={1} />
+      {/* {props.text.map((item:any)=>{
+        <PickedOption text={item} colorIndex={0} />
+      })} */}
+      <PickedOption text='t사탕' colorIndex={0} />
+      {/* <PickedOption text='사탕' colorIndex={1} /> */}
       <span>중에 골라줘!</span>
     </div>
   )
