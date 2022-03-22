@@ -1,7 +1,6 @@
-import { idText } from 'typescript';
-
 /* Action Types */
 const ADD_OPTION = 'options/ADD_OPTION';
+const SET_TEXT = 'options/SET_TEXT';
 const SET_PICKED = 'options/SET_PICKED';
 
 /* Action create functions */
@@ -15,6 +14,12 @@ export const addOption = (color: number, text:string) => ({
   }
 });
 
+export const setText = (id:number, text:string) => ({
+  type: SET_TEXT,
+  id: id,
+  text: text
+})
+
 export const setPicked = (id:number, color:number, text:string) => ({
   type: SET_PICKED,
   pickedItem: {
@@ -24,6 +29,7 @@ export const setPicked = (id:number, color:number, text:string) => ({
   }
 
 })
+
 /* Initial state */
 const initialState: any = {
   clouds: [],
@@ -38,6 +44,16 @@ export default function options(state = initialState, action: any) {
         ...state,
         clouds: state.clouds.concat(action.option),
         color: action.option.color
+      };
+    case SET_TEXT:
+      //action.id action.text
+      //action.id로 cloud내에서 해당 옵션 찾고 여기 내의 텍스트 변경하기
+      return{
+        ...state,
+        clouds: state.clouds.map(
+          (x:any) => x.id === action.id ? {...x, text: action.text}
+                                        : x
+        )
       };
     case SET_PICKED:
       return {

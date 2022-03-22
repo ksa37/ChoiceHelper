@@ -26,7 +26,7 @@ export default function OptionList(){
     let content:any = [];
 
     clouds.map((cloud:any)=>{
-      content.push(<OptionCloud color={cloud.color} key={cloud.id} />);
+      content.push(<OptionCloud color={cloud.color} id={cloud.id} key={cloud.id} />);
     })
     return content;
   };
