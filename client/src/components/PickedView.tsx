@@ -1,7 +1,6 @@
 import React from 'react';
 import Button from './Button';
 import '../App.css';
-import OptionCloud from './OptionCloud';
 import PickedOptionList from './PickedOptionList';
 import { Link, useLocation } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -39,18 +38,15 @@ export default function PickedView(props:any){
           <FontAwesomeIcon icon={faUndo} />
         </p> 
       </Link>
+
       <h2 style={{margin:'0 10px' }}>당신의 운명은 ..</h2>
       <PickedCloud color={pickedOption.color} text={pickedOption.text}/>
       <p style={{textAlign: 'center'}}>총 {accPicked}번 골라줬어요</p>
+
       <h2 style={{margin:'0 10px'}}>현재 다른 사람들은 ..</h2>
-      {pickedData.map((item, index)=>{
-        // console.log(item, index);
-        <PickedOptionList textList={item} id={index}/>
-      })}
-      
-      {/* <PickedOptionList/>
-      <PickedOptionList/>
-      <PickedOptionList/> */}
+      {pickedData.map((item, index)=>(
+        <PickedOptionList textList={item} key={index}/>
+      ))}
       <Button buttonOption={1}/>
     </div>
   )

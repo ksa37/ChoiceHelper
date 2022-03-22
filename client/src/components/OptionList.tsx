@@ -9,11 +9,10 @@ import { addOption } from '../modules/Options';
 export default function OptionList(){
 
   // const [initialized, setInitialized] = useState(0);
-  const dispatch = useDispatch(); 
+  // const dispatch = useDispatch(); 
 
-  const { clouds, color } = useSelector((state: RootStateOrAny) => ({
+  const { clouds} = useSelector((state: RootStateOrAny) => ({
     clouds: state.options.clouds,
-    color: state.options.color
   }));
 
   // console.log(initialized);
