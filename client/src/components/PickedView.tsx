@@ -31,7 +31,7 @@ export default function PickedView(props:any){
 
 
   return(
-    <div style={{backgroundColor: backgroundColors[0], height: '100vh'}} >
+    <div style={{backgroundColor: backgroundColors[pickedOption.color], height: '100vh'}} >
       <Link to='/' style={{color:'black'}}>
         <p style={{textAlign:'right', margin:'0 10px', paddingTop:'10px'}}>
           다른 것도 골라줘!
