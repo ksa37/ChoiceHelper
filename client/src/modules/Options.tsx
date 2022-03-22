@@ -4,7 +4,7 @@ const SET_TEXT = 'options/SET_TEXT';
 const SET_PICKED = 'options/SET_PICKED';
 
 /* Action create functions */
-let nextId = 0;
+let nextId = 2;
 export const addOption = (color: number, text:string) => ({
   type: ADD_OPTION,
   option: {
@@ -32,8 +32,8 @@ export const setPicked = (id:number, color:number, text:string) => ({
 
 /* Initial state */
 const initialState: any = {
-  clouds: [],
-  color: 0,
+  clouds: [{id:0, color:0, text:''}, {id:1, color:1, text:''}],
+  color: 1,
   pickedOption: {}
 };
 

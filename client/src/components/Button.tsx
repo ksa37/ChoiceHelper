@@ -26,7 +26,7 @@ export default function Button({buttonOption}:any){
   const onClick =  () => {
     const picked = randomPick(clouds.length);
     console.log(clouds[picked].color, clouds[picked].text);
-    dispatch(setPicked(picked, clouds[picked].color, clouds[picked].text));
+    dispatch(setPicked(picked, clouds[picked].id, clouds[picked].text));
 
     switch(btnOpt){
       case(0):{

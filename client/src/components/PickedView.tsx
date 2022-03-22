@@ -46,7 +46,6 @@ export default function PickedView(props:any){
       {pickedData.map((item, index)=>{
         // console.log(item, index);
         <PickedOptionList textList={item} id={index}/>
-        console.log('Hi');
       })}
       
       {/* <PickedOptionList/>

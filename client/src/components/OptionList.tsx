@@ -4,9 +4,11 @@ import '../App.css';
 import { RootStateOrAny, useSelector, useDispatch } from 'react-redux'; 
 import { addOption } from '../modules/Options';
 
+// function 
+
 export default function OptionList(){
 
-  const [initialized, setInitialized] = useState(0);
+  // const [initialized, setInitialized] = useState(0);
   const dispatch = useDispatch(); 
 
   const { clouds, color } = useSelector((state: RootStateOrAny) => ({
@@ -14,13 +16,13 @@ export default function OptionList(){
     color: state.options.color
   }));
 
-
-  if(initialized===0){
-    for(let i=0; i<2; i++){
-      dispatch(addOption(i%3, ""));      
-    }
-    setInitialized(1);
-  }
+  // console.log(initialized);
+  // if(initialized===0){
+  //   for(let i=0; i<2; i++){
+  //     dispatch(addOption(i%3, ""));      
+  //   }
+  //   setInitialized(1);
+  // }
   
   const getOptionClouds = () =>{
     let content:any = [];
