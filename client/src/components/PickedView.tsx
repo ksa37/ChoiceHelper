@@ -1,12 +1,10 @@
 import React from 'react';
 import Button from './Button';
 import '../App.css';
-// import OptionCloud from './OptionCloud';
-// import PickedOption from './PickedOption';
 import { fetchPosts } from '../api';
 import { useAsync } from 'react-async';
 import PickedOptionList from './PickedOptionList';
-import { Link, useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faUndo} from '@fortawesome/free-solid-svg-icons';
 import { RootStateOrAny, useSelector } from 'react-redux';
@@ -31,10 +29,7 @@ function PickedCloud(props:any){
 
 export default function PickedView(props:any){
   const backgroundColors = ['#FFF8E8', '#FFF2F2', '#F2F7FF'];
-  // const accPicked = 86;
-  // if (data) {
-  //   const length = data.length
-  // }
+  const accPicked = 1;
 
   const {pickedOption} = useSelector((state: RootStateOrAny) => ({
     pickedOption: state.options.pickedOption
@@ -45,16 +40,6 @@ export default function PickedView(props:any){
   const { data: data, error, isLoading } = useAsync({
     promiseFn: getData,
   });
-
-
-  console.log(data);
-  var accPicked = 1
-  if (data) {
-    const accPicked = data.length;
-  }
-  // else {
-  //   const accPicked = 1
-  // }
 
   if (data)
     return(
