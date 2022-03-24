@@ -14,8 +14,6 @@ async function getData() {
   return data;
 }
 
-
-
 const imgPath = ["/clouds/1.png", "/clouds/2.png", "/clouds/3.png"];
 
 function PickedCloud(props:any){
@@ -41,50 +39,25 @@ export default function PickedView(props:any){
     promiseFn: getData,
   });
 
-  if (data)
-    return(
-      <div style={{backgroundColor: backgroundColors[pickedOption.color], height: '100vh'}} >
-        <Link to='/' style={{color:'black'}}>
-          <p style={{textAlign:'right', margin:'0 10px', paddingTop:'10px'}}>
-            다른 것도 골라줘!
-            <FontAwesomeIcon icon={faUndo} />
-          </p> 
-        </Link>
+  const pickedNum = data ? data.length : 1;
 
-        <h2 style={{margin:'0 10px' }}>당신의 운명은 ..</h2>
-        <PickedCloud color={pickedOption.color} text={pickedOption.text}/>
-        <p style={{textAlign: 'center'}}>총 {data.length}번 골라줬어요</p>
-        {/* {({data} == undefined)
-           ? <p style={{textAlign: 'center'}}>총 0번 골라줬어요</p> 
-          //  : <p style={{textAlign: 'center'}}>총 1번 골라줬어요</p> }
-           : <p style={{textAlign: 'center'}}>총 {data.length}번 골라줬어요</p> } */}
-        <h2 style={{margin:'0 10px'}}>현재 다른 사람들은 ..</h2>
-        {pickedData.map((item, index)=>(
-          <PickedOptionList textList={item} key={index}/>
-        ))}
-        <Button buttonOption={1}/>
-      </div>
-    )
-  else
-    return (
-      <div style={{backgroundColor: backgroundColors[pickedOption.color], height: '100vh'}} >
-        <Link to='/' style={{color:'black'}}>
-          <p style={{textAlign:'right', margin:'0 10px', paddingTop:'10px'}}>
-            다른 것도 골라줘!
-            <FontAwesomeIcon icon={faUndo} />
-          </p> 
-        </Link>
+  return(
+    <div style={{backgroundColor: backgroundColors[pickedOption.color], height: '100vh'}} >
+      <Link to='/' style={{color:'black'}}>
+        <p style={{textAlign:'right', margin:'0 10px', paddingTop:'10px'}}>
+          다른 것도 골라줘!
+          <FontAwesomeIcon icon={faUndo} />
+        </p> 
+      </Link>
 
-        <h2 style={{margin:'0 10px' }}>당신의 운명은 ..</h2>
-        <PickedCloud color={pickedOption.color} text={pickedOption.text}/>
-        {/* <p style={{textAlign: 'center'}}>총 {data.length}번 골라줬어요</p> */}
-        <p style={{textAlign: 'center'}}>총 {accPicked}번 골라줬어요</p>
-
-        <h2 style={{margin:'0 10px'}}>현재 다른 사람들은 ..</h2>
-        {pickedData.map((item, index)=>(
-          <PickedOptionList textList={item} key={index}/>
-        ))}
-        <Button buttonOption={1}/>
-      </div>
-    )
+      <h2 style={{margin:'0 10px' }}>당신의 운명은 ..</h2>
+      <PickedCloud color={pickedOption.color} text={pickedOption.text}/>
+      <p style={{textAlign: 'center'}}>총 {pickedNum}번 골라줬어요</p>
+      <h2 style={{margin:'0 10px'}}>현재 다른 사람들은 ..</h2>
+      {pickedData.map((item, index)=>(
+        <PickedOptionList textList={item} key={index}/>
+      ))}
+      <Button buttonOption={1}/>
+    </div>
+  )
 }
