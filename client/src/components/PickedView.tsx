@@ -33,12 +33,14 @@ export default function PickedView(props:any){
     pickedOption: state.options.pickedOption
   }));
 
-  const pickedData = [['껌', '사탕'], ['로맨스', '액션', '공포'], ['짜장면', '탕수육']];
+  
+  //[['껌', '사탕'], ['로맨스', '액션', '공포'], ['짜장면', '탕수육']];
 
   const { data: data, error, isLoading } = useAsync({
     promiseFn: getData,
   });
 
+  const pickedData = data?.map((item: any)=>item.options);
   const pickedNum = data ? data.length : 1;
 
   return(
@@ -54,7 +56,7 @@ export default function PickedView(props:any){
       <PickedCloud color={pickedOption.color} text={pickedOption.text}/>
       <p style={{textAlign: 'center'}}>총 {pickedNum}번 골라줬어요</p>
       <h2 style={{margin:'0 10px'}}>현재 다른 사람들은 ..</h2>
-      {pickedData.map((item, index)=>(
+      {pickedData.slice(0,5).map((item:any, index:number)=>(
         <PickedOptionList textList={item} key={index}/>
       ))}
       <Button buttonOption={1}/>

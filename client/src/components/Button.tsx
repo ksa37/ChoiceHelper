@@ -52,8 +52,8 @@ export default function Button({buttonOption}:any){
         
         // random pick 후 db에 올리기
 
-        const options: string[] = ["hi"];
-        const selected_option: string = 'hello';
+        const options: string[] = clouds.map((cloud:any)=>cloud.text);
+        const selected_option: string = clouds[picked].text;
         const repeat: number = 0;
         const createdAt = new Date();
 
