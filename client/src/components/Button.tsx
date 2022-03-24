@@ -14,7 +14,6 @@ export default function Button({buttonOption}:any){
   const {clouds} = useSelector((state: RootStateOrAny) => ({
     clouds: state.options.clouds
   }));
-  console.log();
 
   // redux 조회해서 몇가지 옵션이 존재하는지 확인, validate 유무도 확인(글자가 없으면 안됨)
   // 그 숫자 중에 랜덤 숫자를 뽑아서 반환하고 이 결과를 redux 또는 서버에 저장
