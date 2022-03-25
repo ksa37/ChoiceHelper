@@ -40,7 +40,9 @@ export default function PickedView(props:any){
     promiseFn: getData,
   });
 
-  const pickedData = data?.map((item: any)=>item.options);
+  // const pickedData = data?.map((item: any)=>item.options);
+  const pickedData = data ? data.map((item: any)=>item.options)
+                    :[['껌', '사탕'], ['로맨스', '액션', '공포'], ['짜장면', '탕수육']];
   const pickedNum = data ? data.length : 1;
 
   return(
