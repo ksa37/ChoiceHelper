@@ -1,6 +1,7 @@
 import React from 'react';
 import Button from './Button';
 import '../App.css';
+import './PickedView.css';
 import { fetchPosts } from '../api';
 import { useAsync } from 'react-async';
 import PickedOptionList from './PickedOptionList';
@@ -20,7 +21,7 @@ function PickedCloud(props:any){
   return(
     <div className='img-container'>
       <img src={imgPath[props.color]}/>
-      {<p className='text-after-input'>{props.text}</p>}
+      {<p style={{margin: '0'}} className='text-after-input'>{props.text}</p>}
     </div>
   )
 };
@@ -47,21 +48,27 @@ export default function PickedView(props:any){
 
   return(
     <div style={{backgroundColor: backgroundColors[pickedOption.color], height: '100vh'}} >
-      <Link to='/' style={{color:'black'}}>
-        <p style={{textAlign:'right', margin:'0 10px', paddingTop:'10px'}}>
-          다른 것도 골라줘!
+      <div className="refresh-button" >
+        <Link to='/' style={{color:'black'}}>
+          {/* <p style={{textAlign:'right'}}> */}
+            다른 것도 골라줘!
+        </Link>
+        &nbsp; &nbsp;
+        <Link to='/' style={{color:'black'}}>
           <FontAwesomeIcon icon={faUndo} />
-        </p> 
-      </Link>
+        </Link>
+      </div>
 
-      <h2 style={{margin:'0 10px' }}>당신의 운명은 ..</h2>
-      <PickedCloud color={pickedOption.color} text={pickedOption.text}/>
-      <p style={{textAlign: 'center'}}>총 {pickedNum}번 골라줬어요</p>
-      <h2 style={{margin:'0 10px'}}>현재 다른 사람들은 ..</h2>
-      {pickedData.slice(0,5).map((item:any, index:number)=>(
-        <PickedOptionList textList={item} key={index}/>
-      ))}
-      <Button buttonOption={1}/>
+      <div className="contents">
+        <h2 style={{margin: '0'}}>당신의 운명은 ..</h2>
+        <PickedCloud color={pickedOption.color} text={pickedOption.text}/>
+        <p style={{textAlign: 'center'}}>총 {pickedNum}번 골라줬어요</p>
+        <h2>현재 다른 사람들은 ..</h2>
+        {pickedData.slice(0,5).map((item:any, index:number)=>(
+          <PickedOptionList textList={item} key={index}/>
+        ))}
+        <Button buttonOption={1}/>
+      </div>
     </div>
   )
 }
