@@ -4,7 +4,8 @@ function PickedOption(props:any){
   const colors = ["#FFCCCC", "#FFE7AB", "#CCE0FF"];
 
   return(
-    <span style={{height:40, borderRadius:'20%', padding:'5px',margin:'3px', backgroundColor: colors[props.colorIndex] }}>
+    <span style={{height:40, borderRadius:'7px', padding:'5px',margin:'3px', backgroundColor: colors[props.colorIndex] }}>
+    {/* <span style={{height:40, borderRadius:'20%', padding:'5px',margin:'3px', backgroundColor: colors[props.colorIndex] }}> */}
       {props.text}
     </span>
   )
@@ -13,7 +14,7 @@ function PickedOption(props:any){
 export default function PickedOptionList(props:any){
 
   return(
-    <div>
+    <div style={{margin: '16px 0'}}  >
       {props.textList.map((item:any, index:number)=>(
         <PickedOption text={item} colorIndex={index%3} key={index}/>
       ))}

@@ -1,0 +1,16 @@
+.header-group {
+    display: flex;
+    /* flex-direction: row; */
+    justify-content: space-between;
+    align-items: center;   
+    margin: 12px 24px;
+}
+
+.add-button {
+    border: 0;
+    background-color: transparent;
+    text-decoration: underline;
+    color: #757575;
+    font-size: 14px;
+    cursor: pointer;
+}

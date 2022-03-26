@@ -1,0 +1,12 @@
+.refresh-button {
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+    align-items: center;   
+    padding: 12px 24px;
+    color: black
+}
+
+.contents {
+    margin: 12px 30px;
+}
