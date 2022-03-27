@@ -3,7 +3,7 @@ import OptionCloud from './OptionCloud';
 import '../App.css';
 import { RootStateOrAny, useSelector, useDispatch } from 'react-redux'; 
 import { addOption } from '../modules/Options';
-
+import Modal from 'react-modal';
 // function 
 
 export default function OptionList(){
@@ -35,6 +35,9 @@ export default function OptionList(){
   return(
     <>
       {getOptionClouds()}
+      {/* <Modal isOpen={true}>
+        This is Modal content
+      </Modal> */}
     </>
   )
 }
