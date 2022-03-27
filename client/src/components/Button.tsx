@@ -4,6 +4,7 @@ import { createPost, fetchPosts } from '../api';
 import '../App.css';
 import { RootStateOrAny, useSelector, useDispatch } from 'react-redux'; 
 import { setPicked } from '../modules/Options';
+import Modal from 'react-modal';
 
 export default function Button({buttonOption}:any){
   const optionText = ["골라줘!", "공유하기"];
@@ -22,7 +23,16 @@ export default function Button({buttonOption}:any){
   function randomPick(optionNumber: number){
     return Math.floor(Math.random()*optionNumber);
   }; 
-// async
+
+  const [modalIsOpen, setIsOpen] = useState(false);
+  function openModal() {
+    setIsOpen(true);
+  }
+
+  function closeModal() {
+    setIsOpen(false);
+  }
+
   const onClick =  async () => {
     const picked = randomPick(clouds.length);
     console.log(clouds[picked].color, clouds[picked].text);
@@ -30,9 +40,14 @@ export default function Button({buttonOption}:any){
 
     switch(btnOpt){
       case(0):{
-        setBtnOpt(1);
-        // 골라줘! -> 공유하기
-
+        // 글자 없으면 전달 안되게 하기
+        for(let i=0; i<clouds.length; i++){
+          console.log(clouds[i].text);
+          if(clouds[i].text===''){
+            openModal();
+            return;
+          }
+        }
         // 최신순 정렬 데이터 fetch -> picked view에 redux를 이용해 전달
         try {
           // data fetch test
@@ -74,6 +89,8 @@ export default function Button({buttonOption}:any){
           }
         }
 
+        setBtnOpt(1); // 골라줘! -> 공유하기
+
         break;
       }case(1):{
         setBtnOpt(0); // 버튼 바꾸지 않고 유지해도 될듯?
@@ -88,8 +105,17 @@ export default function Button({buttonOption}:any){
   return(
   <div className='button-area'>
     {btnOpt===0&&<p className='shake-text'>버튼을 누르는 대신 흔들어줘!</p>}
-    <Link to={linkUrls[btnOpt]}>
-      <button className='pick-button' onClick={onClick}>{optionText[btnOpt]}</button>
-    </Link>
+    {modalIsOpen
+      ?<Link to={linkUrls[btnOpt]}>
+        <button className='pick-button' onClick={onClick}>{optionText[btnOpt]}</button>
+      </Link>
+      :<button className='pick-button' onClick={onClick}>{optionText[btnOpt]}</button>
+    }
+    <Modal 
+      isOpen={modalIsOpen && btnOpt===0}
+      onRequestClose={closeModal}
+    >
+      모든 구름이 비면 안됩니다!
+    </Modal>
   </div>
 )}
