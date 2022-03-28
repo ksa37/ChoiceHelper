@@ -4,6 +4,7 @@ import './Header.css';
 import { useSelector, useDispatch, RootStateOrAny } from 'react-redux';
 import { addOption } from '../modules/Options';
 import Modal from 'react-modal';
+import {ToastsContainer, ToastsContainerPosition, ToastsStore} from 'react-toasts';
 
 export default function Header(){
   const dispatch = useDispatch();
@@ -13,20 +14,21 @@ export default function Header(){
   }));
 
   const defaultColor = [0, 1, 2];
-  const [modalIsOpen, setIsOpen] = useState(false);
+  // const [modalIsOpen, setIsOpen] = useState(false);
 
-  function openModal() {
-    setIsOpen(true);
-  }
+  // function openModal() {
+  //   setIsOpen(true);
+  // }
 
-  function closeModal() {
-    setIsOpen(false);
-  }
+  // function closeModal() {
+  //   setIsOpen(false);
+  // }
 
   function addCloud(event: any){
     event.preventDefault();
     if(clouds.length>=7){
-      openModal();
+      // openModal();
+      ToastsStore.warning("7개까지만 만들어줘");
       console.log("7 options are maximum. Now there are", clouds.length);
     }else{
       dispatch(addOption(defaultColor[(color+1)%3],""));
@@ -39,12 +41,13 @@ export default function Header(){
     <button className='add-button' onClick={addCloud}>
       <p>+추가하기</p>
     </button>
-    <Modal 
+    {/* <Modal 
       isOpen={modalIsOpen}
       onRequestClose={closeModal}
     >
       7개가 생성가능한 최대 구름수입니다!
-    </Modal>
+    </Modal> */}
+    <ToastsContainer store={ToastsStore} position={ToastsContainerPosition.TOP_CENTER}/>
   </div>
   )
 }
