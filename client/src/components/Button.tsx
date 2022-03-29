@@ -69,13 +69,12 @@ export default function Button({buttonOption}:any){
         dispatch(setPicked(picked, clouds[picked].id, clouds[picked].text));
         
         // 글자 없으면 전달 안되게 하기 
-        for(let i=0; i<clouds.length; i++){
-          console.log(clouds[i].text);
-          if(clouds[i].text===''){
-            ToastsStore.warning("구름을 모두 채워줘");
+        const cloudsTexts = clouds.map((item:any)=>item.text);
+        if(cloudsTexts.includes('')){
+          ToastsStore.warning("구름을 모두 채워줘");
             return;
-          }
         }
+
         // 최신순 정렬 데이터 fetch -> picked view에 redux를 이용해 전달
         try {
           // data fetch test
