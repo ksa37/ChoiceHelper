@@ -1,11 +1,10 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { createPost, fetchPosts } from '../api';
 import '../App.css';
 import { RootStateOrAny, useSelector, useDispatch } from 'react-redux'; 
 import { setPicked } from '../modules/Options';
-import Modal from 'react-modal';
-import {ToastsContainer, ToastsContainerPosition, ToastsStore} from 'react-toasts';
+import {ToastsStore} from 'react-toasts';
 import { Shake } from '../modules/Shake';
 
 export default function Button({buttonOption}:any){
@@ -35,12 +34,14 @@ export default function Button({buttonOption}:any){
   function randomPick(optionNumber: number){
     return Math.floor(Math.random()*optionNumber);
   }; 
-  const [modalIsOpen, setIsOpen] = useState(false);
-  function openModal() {
-    setIsOpen(true);
+
+  // let banLink = false;
+  const [banLink, setBanLink] = useState(false);
+  function banPage() {
+    setBanLink(true);
   };
-  function closeModal() {
-    setIsOpen(false);
+  function permitPage() {
+    setBanLink(false);
   };
 
   // const [linkOpen, setLinkOpen] = useState(false);
@@ -51,9 +52,16 @@ export default function Button({buttonOption}:any){
   //   setLinkOpen(false);
   // };
 
-  const onClick =  async () => {
-    
+  useEffect(()=>{
+    const cloudsTexts = clouds.map((item:any)=>item.text);
+    if(cloudsTexts.includes('')){
+      banPage();
+    }else{
+      permitPage();
+    }
+  },[clouds])
 
+  const onClick =  async () => {
     switch(btnOpt){
       case(0):{
         const picked = randomPick(clouds.length);
@@ -64,9 +72,7 @@ export default function Button({buttonOption}:any){
         for(let i=0; i<clouds.length; i++){
           console.log(clouds[i].text);
           if(clouds[i].text===''){
-            openModal();
-            // openLink();
-            // ToastsStore.warning("구름을 모두 채워줘");
+            ToastsStore.warning("구름을 모두 채워줘");
             return;
           }
         }
@@ -80,7 +86,6 @@ export default function Button({buttonOption}:any){
           console.log("The number of running our service:");
           console.log(data.length + 1);
           console.log("=======================================")
-          // console.log(cnt.data);
         } catch(error) {
           if (error instanceof Error){
             console.log(error.message);
@@ -110,7 +115,6 @@ export default function Button({buttonOption}:any){
           }
         }
 
-        // setLinkOpen(true);
         setBtnOpt(1); // 골라줘! -> 공유하기
 
         break;
@@ -141,29 +145,13 @@ export default function Button({buttonOption}:any){
   return(
   <div className='button-area'>
     {btnOpt===0&&<p className='shake-text'>버튼을 누르는 대신 흔들어줘!</p>}
-    {/* {btnOpt===0
-      ? 
-        <Link to={linkOpen ?linkUrls[btnOpt] :'#' }>
-          <button className='pick-button' onClick={onClick}>{optionText[btnOpt]}</button>
+    <button className='pick-button' onClick={onClick}>
+      {banLink
+        ? <>{optionText[btnOpt]}</>
+        :<Link to={linkUrls[0]} style={{textDecoration:'none', color:'white'}}>
+          {optionText[btnOpt]}
         </Link>
-      :
-        <Link to={linkUrls[btnOpt]}>
-          <button className='pick-button' onClick={onClick}>{optionText[btnOpt]}</button>
-        </Link>
-    }  */}
-    {/* {modalIsOpen
-      ?
-      :<button className='pick-button' onClick={onClick}>{optionText[btnOpt]}</button>
-      
-    } */}
-    <Link to={linkUrls[0]}>
-      <button className='pick-button' onClick={onClick}>{optionText[btnOpt]}</button>
-    </Link>
-    <Modal 
-      isOpen={modalIsOpen && btnOpt===0}
-      onRequestClose={closeModal}
-    >
-      모든 구름이 비면 안됩니다!
-    </Modal>
+        }
+    </button>
   </div>
 )}
