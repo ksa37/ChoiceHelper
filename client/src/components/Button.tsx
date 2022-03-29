@@ -6,6 +6,7 @@ import { RootStateOrAny, useSelector, useDispatch } from 'react-redux';
 import { setPicked } from '../modules/Options';
 import Modal from 'react-modal';
 import {ToastsContainer, ToastsContainerPosition, ToastsStore} from 'react-toasts';
+import { Shake } from '../modules/Shake';
 
 export default function Button({buttonOption}:any){
   const optionText = ["골라줘!", "공유하기"];
@@ -18,6 +19,15 @@ export default function Button({buttonOption}:any){
     pickedOption: state.options.pickedOption
   }));
 
+  // const shake = new Shake({threshold: 15, timeout: 1000});
+
+  // shake.addEventListener('shake', ev => {
+  //   console.log('Shake!', ev.detail.timeStamp, ev.detail.acceleration);
+  // });
+
+  // // Then, in response to a user-initiated event:
+  // const approved = await shake.start();
+  
   // redux 조회해서 몇가지 옵션이 존재하는지 확인, validate 유무도 확인(글자가 없으면 안됨)
   // 그 숫자 중에 랜덤 숫자를 뽑아서 반환하고 이 결과를 redux 또는 서버에 저장
   // 서버에 저장하면 이후에 서버에서 선택된 옵션에 대한 정보를 받아와서 보여주기

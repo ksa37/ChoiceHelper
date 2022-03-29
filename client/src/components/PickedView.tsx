@@ -8,7 +8,8 @@ import PickedOptionList from './PickedOptionList';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faUndo} from '@fortawesome/free-solid-svg-icons';
-import { RootStateOrAny, useSelector } from 'react-redux';
+import { RootStateOrAny, useSelector, useDispatch} from 'react-redux';
+import {newPage} from '../modules/index';
 
 async function getData() {
   const { data } = await fetchPosts();
@@ -46,9 +47,15 @@ export default function PickedView(props:any){
                     :[['껌', '사탕'], ['로맨스', '액션', '공포'], ['짜장면', '탕수육']];
   const pickedNum = data ? data.length : 1;
 
+  const dispatch = useDispatch();
+
+  function onRefreshClick(){
+    dispatch(newPage());
+  };
+
   return(
     <div style={{backgroundColor: backgroundColors[pickedOption.color], height: '100vh'}} >
-      <div className="refresh-button" >
+      <div className="refresh-button" onClick={onRefreshClick} >
         <Link to='/' style={{color:'black'}}>
           {/* <p style={{textAlign:'right'}}> */}
             다른 것도 골라줘!
