@@ -14,20 +14,10 @@ export default function Header(){
   }));
 
   const defaultColor = [0, 1, 2];
-  // const [modalIsOpen, setIsOpen] = useState(false);
-
-  // function openModal() {
-  //   setIsOpen(true);
-  // }
-
-  // function closeModal() {
-  //   setIsOpen(false);
-  // }
 
   function addCloud(event: any){
     event.preventDefault();
     if(clouds.length>=7){
-      // openModal();
       ToastsStore.warning("7개까지만 만들어줘");
       console.log("7 options are maximum. Now there are", clouds.length);
     }else{
@@ -37,16 +27,9 @@ export default function Header(){
   return(
   <div className="header-group">
     골라줘!
-    {/* refresh button */}
     <button className='add-button' onClick={addCloud}>
       <p>+추가하기</p>
     </button>
-    {/* <Modal 
-      isOpen={modalIsOpen}
-      onRequestClose={closeModal}
-    >
-      7개가 생성가능한 최대 구름수입니다!
-    </Modal> */}
     <ToastsContainer store={ToastsStore} position={ToastsContainerPosition.TOP_CENTER}/>
   </div>
   )
