@@ -3,20 +3,23 @@ import { Link } from 'react-router-dom';
 import { createPost, fetchPosts } from '../api';
 import '../App.css';
 import { RootStateOrAny, useSelector, useDispatch } from 'react-redux'; 
-import { setPicked } from '../modules/Options';
+import { setButtonOpt, setPicked } from '../modules/Options';
 import {ToastsStore} from 'react-toasts';
 import { Shake } from '../modules/Shake';
 
 export default function Button({buttonOption}:any){
   const optionText = ["골라줘!", "공유하기"];
-  const [btnOpt, setBtnOpt] = useState(buttonOption);
+  // const [btnOpt, setBtnOpt] = useState(buttonOption);
   const linkUrls = ["/picked", "/"]; 
 
   const dispatch = useDispatch(); 
-  const {clouds, pickedOption} = useSelector((state: RootStateOrAny) => ({
+  const {clouds, pickedOption, btnOpt} = useSelector((state: RootStateOrAny) => ({
     clouds: state.options.clouds,
-    pickedOption: state.options.pickedOption
+    pickedOption: state.options.pickedOption,
+    btnOpt: state.options.btnOpt
   }));
+
+  console.log(btnOpt);
 
   // const shake = new Shake({threshold: 15, timeout: 1000});
 
@@ -35,7 +38,6 @@ export default function Button({buttonOption}:any){
     return Math.floor(Math.random()*optionNumber);
   }; 
 
-  // let banLink = false;
   const [banLink, setBanLink] = useState(false);
   function banPage() {
     setBanLink(true);
@@ -43,14 +45,6 @@ export default function Button({buttonOption}:any){
   function permitPage() {
     setBanLink(false);
   };
-
-  // const [linkOpen, setLinkOpen] = useState(false);
-  // function openLink() {
-  //   setLinkOpen(true);
-  // };
-  // function closeModal() {
-  //   setLinkOpen(false);
-  // };
 
   useEffect(()=>{
     const cloudsTexts = clouds.map((item:any)=>item.text);
@@ -64,10 +58,6 @@ export default function Button({buttonOption}:any){
   const onClick =  async () => {
     switch(btnOpt){
       case(0):{
-        const picked = randomPick(clouds.length);
-        console.log(clouds[picked].color, clouds[picked].text);
-        dispatch(setPicked(picked, clouds[picked].id, clouds[picked].text));
-        
         // 글자 없으면 전달 안되게 하기 
         const cloudsTexts = clouds.map((item:any)=>item.text);
         if(cloudsTexts.includes('')){
@@ -75,21 +65,11 @@ export default function Button({buttonOption}:any){
             return;
         }
 
-        // 최신순 정렬 데이터 fetch -> picked view에 redux를 이용해 전달
-        try {
-          // data fetch test
-          const { data } = await fetchPosts();
-          // const cnt = await countPosts()
-          console.log("Data fetch and count test:");
-          console.log(data);
-          console.log("The number of running our service:");
-          console.log(data.length + 1);
-          console.log("=======================================")
-        } catch(error) {
-          if (error instanceof Error){
-            console.log(error.message);
-          }
-        }
+        // 고르기
+        const picked = randomPick(clouds.length);
+        console.log(clouds[picked].color, clouds[picked].text);
+        dispatch(setPicked(picked, clouds[picked].id, clouds[picked].text));
+        
         
         // random pick 후 db에 올리기
         const options: string[] = clouds.map((cloud:any)=>cloud.text);
@@ -114,11 +94,10 @@ export default function Button({buttonOption}:any){
           }
         }
 
-        setBtnOpt(1); // 골라줘! -> 공유하기
+        dispatch(setButtonOpt(1));
 
         break;
       }case(1):{
-        // setBtnOpt(0); // 버튼 바꾸지 않고 유지해도 될듯?
         // 공유하기
         const pickedText = pickedOption.text;
         const pickList = clouds.map((item:any)=> item.text);
@@ -143,14 +122,14 @@ export default function Button({buttonOption}:any){
 
   return(
   <div className='button-area'>
-    {btnOpt===0&&<p className='shake-text'>버튼을 누르는 대신 흔들어줘!</p>}
+    {/* {btnOpt===0&&<p className='shake-text'>버튼을 누르는 대신 흔들어줘!</p>} */}
     <button className='pick-button' onClick={onClick}>
-      {banLink
+      {banLink || btnOpt===1
         ? <>{optionText[btnOpt]}</>
-        :<Link to={linkUrls[0]} style={{textDecoration:'none', color:'white'}}>
+        : <Link to="/picked" style={{textDecoration:'none', color:'white'}}>
           {optionText[btnOpt]}
         </Link>
-        }
+      }
     </button>
   </div>
 )}

@@ -35,9 +35,6 @@ export default function PickedView(props:any){
     pickedOption: state.options.pickedOption
   }));
 
-  
-  //[['껌', '사탕'], ['로맨스', '액션', '공포'], ['짜장면', '탕수육']];
-
   const { data: data, error, isLoading } = useAsync({
     promiseFn: getData,
   });

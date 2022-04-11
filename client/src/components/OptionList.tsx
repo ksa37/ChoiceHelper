@@ -6,20 +6,9 @@ import { addOption } from '../modules/Options';
 
 export default function OptionList(){
 
-  // const [initialized, setInitialized] = useState(0);
-  // const dispatch = useDispatch(); 
-
   const { clouds} = useSelector((state: RootStateOrAny) => ({
     clouds: state.options.clouds,
   }));
-
-  // console.log(initialized);
-  // if(initialized===0){
-  //   for(let i=0; i<2; i++){
-  //     dispatch(addOption(i%3, ""));      
-  //   }
-  //   setInitialized(1);
-  // }
   
   const getOptionClouds = () =>{
     let content:any = [];
@@ -31,8 +20,8 @@ export default function OptionList(){
   };
 
   return(
-    <>
+    <div style={{marginBottom: '130px'}}>
       {getOptionClouds()}
-    </>
+    </div>
   )
 }

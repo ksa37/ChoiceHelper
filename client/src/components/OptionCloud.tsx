@@ -21,7 +21,6 @@ export default function OptionCloud(props:any){
     dispatch(setText(props.id, value));
   }
 
-  //props.key
   const onSubmit = (event:any) => {
     event.preventDefault();
   }
