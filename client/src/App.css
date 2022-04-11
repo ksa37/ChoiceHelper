@@ -52,32 +52,6 @@ header {
   margin: 0 auto;
 }
 
-.img-container {
-  position: relative;
-  text-align: center;
-}
-.text-before-input {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  color: #757575;
-  text-decoration: underline;
-  text-align: center;
-  background-color: transparent;
-}
-
-.text-after-input {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  text-align: center;
-  background-color: transparent;
-  font-size: 18px;
-  font-weight: bold;
-}
-
 textarea {
   -webkit-appearance: none;
   -moz-appearance: none;

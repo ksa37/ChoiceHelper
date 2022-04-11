@@ -4,8 +4,6 @@ import '../App.css';
 import { RootStateOrAny, useSelector, useDispatch } from 'react-redux'; 
 import { addOption } from '../modules/Options';
 
-// function 
-
 export default function OptionList(){
 
   // const [initialized, setInitialized] = useState(0);

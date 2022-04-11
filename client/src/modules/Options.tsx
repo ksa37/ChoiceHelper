@@ -1,5 +1,6 @@
 /* Action Types */
 const ADD_OPTION = 'options/ADD_OPTION';
+const DELETE_OPTION = 'options/DELETE_OPTION';
 const SET_TEXT = 'options/SET_TEXT';
 const SET_PICKED = 'options/SET_PICKED';
 
@@ -12,6 +13,11 @@ export const addOption = (color: number, text:string) => ({
     color: color,
     text
   }
+});
+
+export const deleteOption = (id:number) => ({
+  type: DELETE_OPTION, 
+  id:id
 });
 
 export const setText = (id:number, text:string) => ({
@@ -45,9 +51,12 @@ export default function options(state = initialState, action: any) {
         clouds: state.clouds.concat(action.option),
         color: action.option.color
       };
+    case DELETE_OPTION:
+      return {
+        ...state, 
+        clouds: state.clouds.filter((cloud:any) => cloud.id !== action.id)
+      };
     case SET_TEXT:
-      //action.id action.text
-      //action.id로 cloud내에서 해당 옵션 찾고 여기 내의 텍스트 변경하기
       return{
         ...state,
         clouds: state.clouds.map(
