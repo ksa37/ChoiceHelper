@@ -5,6 +5,7 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
+    "develop": "nodemon index.js",
     "start": "node index.js"
   },
   "author": "Jiyun Park <wldbs0507@kaist.ac.kr>",
