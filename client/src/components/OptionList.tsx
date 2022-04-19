@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import OptionCloud from './OptionCloud';
 import '../App.css';
 import { RootStateOrAny, useSelector, useDispatch } from 'react-redux'; 
-import { addOption } from '../modules/Options';
 
 export default function OptionList(){
 

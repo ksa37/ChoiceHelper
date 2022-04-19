@@ -24,16 +24,24 @@
   font-weight: bold;
 }
 
-.delete-cloud {
+.delete-cloud-web {
   position: absolute;
   display: none;
+  top: 0%;
+  left: 50%;
 }
 
-form:hover .delete-cloud {
+form:hover .delete-cloud-web {
   display: block;
 }
 
-.delete-cloud {
+.delete-cloud-mobile {
+  position: absolute;
+  display: none;
   top: 0%;
   left: 50%;
+}
+
+.show-delete {
+  display: block;
 }

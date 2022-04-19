@@ -41,7 +41,7 @@ export const setButtonOpt = (btnOpt:number) => ({
   type: SET_BUTTON_OPT,
   btnOpt: btnOpt
 })
-
+//btnOpt: BtnOpt
 
 /* Initial state */
 const initialState: any = {
