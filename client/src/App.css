@@ -3,6 +3,11 @@ header {
   top: 27px;
   /* display: inline-block; */
 }
+
+body {
+  height: 100vh;
+}
+
 .header-icon {
   position: relative;
   float: left;

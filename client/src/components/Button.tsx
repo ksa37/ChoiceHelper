@@ -122,7 +122,7 @@ export default function Button({buttonOption}:any){
         // 공유하기
         const pickedText = pickedOption.text;
         const pickList = clouds.map((item:any)=> item.text);
-        const shareStr:string = pickList.join() + ' 중에서 ' + pickedText + '선택완료!';
+        const shareStr:string = pickList.join() + ' 중에서 ' + pickedText + ' 선택완료!';
         
         console.log(shareStr);
         console.log(navigator.share);
