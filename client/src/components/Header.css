@@ -3,7 +3,9 @@
     /* flex-direction: row; */
     justify-content: space-between;
     align-items: center;   
-    margin: 12px 24px;
+    /* margin: 12px 24px; */
+    padding: 24px 24px;
+    font-weight: 600;
 }
 
 .add-button {

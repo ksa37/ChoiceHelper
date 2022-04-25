@@ -38,7 +38,7 @@ export default function OptionCloud(props:any){
         <img src={imgPath[props.color]} className='img-cloud'/>
         {newOption==='' 
           ? <textarea className='text-before-input' maxLength={30} onChange={onChange} placeholder='선택지를 입력해주세요' value={newOption}/>
-          : <textarea className='text-after-input' maxLength={30} onChange={onChange} placeholder='선택지를 입력해주세요' value={newOption}/>
+          : <textarea className='text-after-input' rows={1} maxLength={30} onChange={onChange} placeholder='선택지를 입력해주세요' value={newOption}/>
         }
         
         <div className='delete-cloud' onClick={onClick}>
