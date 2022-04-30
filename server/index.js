@@ -2,6 +2,7 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import mongoose from 'mongoose';
 import cors from 'cors';
+import dotenv from 'dotenv';
 
 import postRoutes from './routes/posts.js'
 
@@ -15,7 +16,10 @@ app.use(cors())
 app.use('/posts', postRoutes);
 
 // Due to security issue, move this variable to .env later
-const CONNECTION_URL = 'mongodb+srv://choicehelper:choicehelper123@cluster0.cb2bq.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
+dotenv.config();
+
+// const CONNECTION_URL = 'mongodb+srv://choicehelper:choicehelper123@cluster0.cb2bq.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
+const CONNECTION_URL = process.env.ATLAS_URI;
 const PORT = process.env.PORT || 4000;
 
 mongoose.connect(CONNECTION_URL, { useNewUrlParser: true, useUnifiedTopology: true })

@@ -8,7 +8,7 @@ import {ToastsStore} from 'react-toasts';
 import { Shake } from '../modules/Shake';
 
 export default function Button({buttonOption}:any){
-  const optionText = ["골라줘!", "공유하기"];
+  const optionText = ["골라줘 !", "공유하기"];
   const [btnOpt, setBtnOpt] = useState(buttonOption);
   const linkUrls = ["/picked", "/"]; 
 
@@ -122,7 +122,7 @@ export default function Button({buttonOption}:any){
         // 공유하기
         const pickedText = pickedOption.text;
         const pickList = clouds.map((item:any)=> item.text);
-        const shareStr:string = pickList.join() + ' 중에서 ' + pickedText + '선택완료!';
+        const shareStr:string = pickList.join() + ' 중에서 ' + pickedText + ' 선택완료!';
         
         console.log(shareStr);
         console.log(navigator.share);
@@ -143,7 +143,7 @@ export default function Button({buttonOption}:any){
 
   return(
   <div className='button-area'>
-    {btnOpt===0&&<p className='shake-text'>버튼을 누르는 대신 흔들어줘!</p>}
+    {/* {btnOpt===0&&<p className='shake-text'>버튼을 누르는 대신 흔들어줘!</p>} */}
     <button className='pick-button' onClick={onClick}>
       {banLink
         ? <>{optionText[btnOpt]}</>

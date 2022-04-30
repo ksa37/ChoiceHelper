@@ -4,6 +4,8 @@ import { RootStateOrAny, useDispatch, useSelector } from 'react-redux';
 import { setText, deleteOption } from '../modules/Options';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faBan} from '@fortawesome/free-solid-svg-icons';
+import {faTimesCircle} from '@fortawesome/free-solid-svg-icons';
+
 
 const imgPath = ["/clouds/1.png", "/clouds/2.png", "/clouds/3.png"];
 
@@ -32,15 +34,19 @@ export default function OptionCloud(props:any){
 
   return(
     <form className='img-container' onSubmit={onSubmit}>
-      <img src={imgPath[props.color]} className='img-cloud'/>
-      {newOption==='' 
-        ? <textarea className='text-before-input' maxLength={30} onChange={onChange} placeholder='선택지를 입력해주세요' value={newOption}/>
-        : <textarea className='text-after-input' maxLength={30} onChange={onChange} placeholder='선택지를 입력해주세요' value={newOption}/>
-      }
-      
-      <div className='delete-cloud' onClick={onClick}>
-        <FontAwesomeIcon icon={faBan} style={{color: 'red'}}/>
+      <div className='img-cloud'> 
+        <img src={imgPath[props.color]} className='img-cloud'/>
+        {newOption==='' 
+          ? <textarea className='text-before-input' maxLength={30} onChange={onChange} placeholder='선택지를 입력해주세요' value={newOption}/>
+          : <textarea className='text-after-input' rows={1} maxLength={30} onChange={onChange} placeholder='선택지를 입력해주세요' value={newOption}/>
+        }
+        
+        <div className='delete-cloud' onClick={onClick}>
+          {/* <FontAwesomeIcon icon={faBan} style={{color: 'red'}}/> */}
+          <FontAwesomeIcon icon={faTimesCircle} style={{color: 'red'}}/>
+        </div>
       </div>
+      
     </form>
   )
 }

@@ -26,11 +26,12 @@ export default function Header(){
   };
   return(
   <div className="header-group">
-    골라줘!
-    <button className='add-button' onClick={addCloud}>
+    Choice Helper
+    {/* 골라줘! */}
+    {/* <button className='add-button' onClick={addCloud}>
       <p>+추가하기</p>
     </button>
-    <ToastsContainer store={ToastsStore} position={ToastsContainerPosition.TOP_CENTER}/>
+    <ToastsContainer store={ToastsStore} position={ToastsContainerPosition.TOP_CENTER}/> */}
   </div>
   )
 }

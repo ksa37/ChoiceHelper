@@ -1,7 +1,20 @@
 .img-container {
   position: relative;
   text-align: center;
+  display: flex;
+  justify-content: center;
 }
+
+.img-cloud {
+  position: relative;
+  max-width: 300px;
+}
+
+textarea::placeholder {
+  font-size: 18px;
+  /* text-decoration: underline; */
+}
+
 .text-before-input {
   position: absolute;
   top: 50%;
@@ -20,13 +33,16 @@
   transform: translate(-50%, -50%);
   text-align: center;
   background-color: transparent;
-  font-size: 18px;
+  /* font-size: auto; */
+  font-size: 35px;
   font-weight: bold;
 }
 
 .delete-cloud {
   position: absolute;
   display: none;
+  /* transform: rotate(-45deg) scale(1.5); */
+  transform: scale(1.5);
 }
 
 form:hover .delete-cloud {
@@ -34,6 +50,6 @@ form:hover .delete-cloud {
 }
 
 .delete-cloud {
-  top: 0%;
-  left: 50%;
+  top: 5%;
+  left: 69%;
 }
