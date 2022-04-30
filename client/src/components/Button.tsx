@@ -51,6 +51,37 @@ export default function Button({buttonOption}:any){
     }
   },[clouds])
 
+  useEffect(()=>{
+    if(btnOpt===1){
+      const pickedText = pickedOption.text;
+        const pickList = clouds.map((item:any)=> item.text);
+        const shareStr:string = pickList.join() + ' 중에서 ' + pickedText + '선택완료!';
+      window.Kakao.Link.createDefaultButton({
+        container: '#create-kakao-link-btn',
+        objectType: 'feed',
+        content: {
+          title: '골라줘! 결과는?',
+          description: shareStr,
+          imageUrl:
+            '',
+          link: {
+            mobileWebUrl: 'https://developers.kakao.com',
+            webUrl: 'https://developers.kakao.com',
+          },
+        },
+        buttons: [
+          {
+            title: '골라줘! 해보기',
+            link: {
+              mobileWebUrl: 'https://choice-helper-diuni-ksa37.netlify.app',
+              webUrl: 'https://choice-helper-diuni-ksa37.netlify.app',
+            },
+          }
+        ],
+      });
+    }
+  }, [btnOpt])
+
   const onClick =  async () => {
     switch(btnOpt){
       case(0):{
@@ -93,48 +124,26 @@ export default function Button({buttonOption}:any){
         dispatch(setButtonOpt(1));
 
         break;
-      }case(1):{
-        // 공유하기
-        const pickedText = pickedOption.text;
-        const pickList = clouds.map((item:any)=> item.text);
-        const shareStr:string = pickList.join() + ' 중에서 ' + pickedText + '선택완료!';
-        
-        console.log(shareStr);
-        console.log(navigator.share);
-        // if (typeof navigator.share !== "undefined") {
-        //   window.navigator.share(
-        //     {
-        //       title: '골라줘! 결과는?', // 공유될 제목
-        //       text: shareStr, // 공유될 설명
-        //       url: '', // 공유될 URL
-        //     });
-        // }else {
-        window.Kakao.Link.createDefaultButton({
-          container: '#create-kakao-link-btn',
-          objectType: 'feed',
-          content: {
-            title: '골라줘! 결과는?',
-            description: shareStr,
-            imageUrl:
-              '',
-            link: {
-              mobileWebUrl: 'https://developers.kakao.com',
-              webUrl: 'https://developers.kakao.com',
-            },
-          },
-          buttons: [
-            {
-              title: '골라줘! 해보기',
-              link: {
-                mobileWebUrl: 'https://choice-helper-diuni-ksa37.netlify.app',
-                webUrl: 'https://choice-helper-diuni-ksa37.netlify.app',
-              },
-            }
-          ],
-        });
-        // }
-        break;
       }
+      // case(1):{
+      //   // 공유하기
+      //   const pickedText = pickedOption.text;
+      //   const pickList = clouds.map((item:any)=> item.text);
+      //   const shareStr:string = pickList.join() + ' 중에서 ' + pickedText + '선택완료!';
+        
+
+      //   // if (typeof navigator.share !== "undefined") {
+      //   //   window.navigator.share(
+      //   //     {
+      //   //       title: '골라줘! 결과는?', // 공유될 제목
+      //   //       text: shareStr, // 공유될 설명
+      //   //       url: '', // 공유될 URL
+      //   //     });
+      //   // }else {
+        
+      //   // }
+      //   break;
+      // }
     }
   };
 
