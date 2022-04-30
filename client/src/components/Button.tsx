@@ -6,8 +6,14 @@ import { RootStateOrAny, useSelector, useDispatch } from 'react-redux';
 import { setButtonOpt, setPicked } from '../modules/Options';
 import {ToastsStore} from 'react-toasts';
 
+declare global {
+  interface Window {
+    Kakao: any; // 👈️ turn off type checking
+  }
+}
+
 export default function Button({buttonOption}:any){
-  const optionText = ["골라줘!", "공유하기"];
+  const optionText = ["골라줘!", "카카오로 공유하기"];
   // const [btnOpt, setBtnOpt] = useState(buttonOption);
   const linkUrls = ["/picked", "/"]; 
 
@@ -95,14 +101,38 @@ export default function Button({buttonOption}:any){
         
         console.log(shareStr);
         console.log(navigator.share);
-        if (typeof navigator.share !== "undefined") {
-          window.navigator.share(
+        // if (typeof navigator.share !== "undefined") {
+        //   window.navigator.share(
+        //     {
+        //       title: '골라줘! 결과는?', // 공유될 제목
+        //       text: shareStr, // 공유될 설명
+        //       url: '', // 공유될 URL
+        //     });
+        // }else {
+        window.Kakao.Link.createDefaultButton({
+          container: '#create-kakao-link-btn',
+          objectType: 'feed',
+          content: {
+            title: '골라줘! 결과는?',
+            description: shareStr,
+            imageUrl:
+              '',
+            link: {
+              mobileWebUrl: 'https://developers.kakao.com',
+              webUrl: 'https://developers.kakao.com',
+            },
+          },
+          buttons: [
             {
-              title: '골라줘! 결과는?', // 공유될 제목
-              text: shareStr, // 공유될 설명
-              url: '', // 공유될 URL
-            });
-        }
+              title: '골라줘! 해보기',
+              link: {
+                mobileWebUrl: 'https://choice-helper-diuni-ksa37.netlify.app',
+                webUrl: 'https://choice-helper-diuni-ksa37.netlify.app',
+              },
+            }
+          ],
+        });
+        // }
         break;
       }
     }
@@ -110,11 +140,25 @@ export default function Button({buttonOption}:any){
 
   return(
   <div className='button-area'>
-    {banLink || btnOpt===1
-      ? <button className='pick-button' onClick={onClick}> {optionText[btnOpt]} </button>
+    {btnOpt===0
+      ? <>
+        {banLink
+        ? <button className='pick-button'>{optionText[btnOpt]}</button>
+        : <Link to="/picked" style={{textDecoration:'none', color:'black'}} onClick={onClick}>
+            <button className='pick-button'>{optionText[btnOpt]}</button>
+          </Link>
+        }
+      </>
+      : <button className='pick-button' id="create-kakao-link-btn" onClick={onClick}> {optionText[btnOpt]} </button>
+    }
+
+
+    {/* {banLink || btnOpt===1
+      ? <button className='pick-button' id="create-kakao-link-btn" onClick={onClick}> {optionText[btnOpt]} </button>
       : <Link to="/picked" style={{textDecoration:'none', color:'black'}} onClick={onClick}>
         <button className='pick-button'>{optionText[btnOpt]}</button>
       </Link>
-    }
+    } */}
   </div>
 )}
+
