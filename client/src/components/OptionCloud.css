@@ -41,30 +41,26 @@ textarea::placeholder {
 .delete-cloud-web {
   position: absolute;
   display: none;
-<<<<<<< HEAD
-  top: 0%;
-  left: 50%;
-=======
   /* transform: rotate(-45deg) scale(1.5); */
+  top: 5%;
+  left: 69%;
   transform: scale(1.5);
->>>>>>> bd28ab0e3593902d4d19dfef077aee57811b761d
 }
 
 form:hover .delete-cloud-web {
   display: block;
 }
 
-<<<<<<< HEAD
-.delete-cloud-mobile {
-  position: absolute;
-  display: none;
-  top: 0%;
-  left: 50%;
-=======
 .delete-cloud {
   top: 5%;
   left: 69%;
->>>>>>> bd28ab0e3593902d4d19dfef077aee57811b761d
+}
+
+.delete-cloud-mobile {
+  position: absolute;
+  display: none;
+  top: 5%;
+  left: 69%;
 }
 
 .show-delete {
