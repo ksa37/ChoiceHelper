@@ -3,6 +3,7 @@ const ADD_OPTION = 'options/ADD_OPTION';
 const DELETE_OPTION = 'options/DELETE_OPTION';
 const SET_TEXT = 'options/SET_TEXT';
 const SET_PICKED = 'options/SET_PICKED';
+const SET_BUTTON_OPT = 'options/SET_BUTTON_OPT';
 
 /* Action create functions */
 let nextId = 2;
@@ -36,11 +37,18 @@ export const setPicked = (id:number, color:number, text:string) => ({
 
 })
 
+export const setButtonOpt = (btnOpt:number) => ({
+  type: SET_BUTTON_OPT,
+  btnOpt: btnOpt
+})
+//btnOpt: BtnOpt
+
 /* Initial state */
 const initialState: any = {
   clouds: [{id:0, color:0, text:''}, {id:1, color:1, text:''}],
   color: 1,
-  pickedOption: {}
+  pickedOption: {},
+  btnOpt: 0
 };
 
 export default function options(state = initialState, action: any) {
@@ -68,6 +76,11 @@ export default function options(state = initialState, action: any) {
       return {
         ...state,
         pickedOption: action.pickedItem
+      };
+    case SET_BUTTON_OPT:
+      return {
+        ...state,
+        btnOpt: action.btnOpt
       };
     default:
       return state;

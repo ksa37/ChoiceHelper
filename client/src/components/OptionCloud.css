@@ -38,18 +38,31 @@ textarea::placeholder {
   font-weight: bold;
 }
 
-.delete-cloud {
+.delete-cloud-web {
   position: absolute;
   display: none;
   /* transform: rotate(-45deg) scale(1.5); */
+  top: 5%;
+  left: 69%;
   transform: scale(1.5);
 }
 
-form:hover .delete-cloud {
+form:hover .delete-cloud-web {
   display: block;
 }
 
 .delete-cloud {
   top: 5%;
   left: 69%;
+}
+
+.delete-cloud-mobile {
+  position: absolute;
+  display: none;
+  top: 5%;
+  left: 69%;
+}
+
+.show-delete {
+  display: block;
 }
